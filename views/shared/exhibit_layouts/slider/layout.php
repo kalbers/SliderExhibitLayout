@@ -9,7 +9,7 @@ $captionPosition = isset($options['captions-position'])
     ? html_escape($options['captions-position'])
     : 'center';
 ?>
-<div class="exhibit-items slider-pro <?php echo $position; ?> <?php echo $size; ?> captions-<?php echo $captionPosition; ?>">
+<div class="slider-pro <?php echo $position; ?> <?php echo $size; ?> captions-<?php echo $captionPosition; ?>">
     <div class="sp-slides">
 
         <?php foreach ($attachments as $attachment): ?>
