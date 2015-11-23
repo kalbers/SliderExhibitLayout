@@ -28,6 +28,7 @@ $captionPosition = isset($options['captions-position'])
                 
                 <?php if($attachment['caption']): ?>
                     <div class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-width="100%">
+                        <span class="caption-title"><?php echo exhibit_builder_link_to_exhibit_item($description, array(), $item); ?></span>
                         <?php echo $attachment['caption']; ?>
                     </div>
                 <?php endif; ?>
