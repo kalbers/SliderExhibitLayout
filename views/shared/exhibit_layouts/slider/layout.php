@@ -22,7 +22,7 @@ $captionPosition = isset($options['captions-position'])
                     <?php if ($description = metadata($item, array('Dublin Core', 'Title'), array('no_escape' => true))): ?>
                         <?php $altText =  $description; ?>
                     <?php endif; ?> 
-                    <div class="sp-layer" data-width="100%" data-height:"100%">
+                    <div class="sp-layer sp-static" data-height:"100%">
                         <?php echo file_markup($file, array('imageSize'=>$size,'linkToFile'=>false, 'imgAttributes'=>array('alt' =>  "$altText", 'title' => metadata($item, array("Dublin Core", "Title"))))); ?>
                     </div>
 
