@@ -22,21 +22,22 @@ $captionPosition = isset($options['captions-position'])
                     <?php if ($description = metadata($item, array('Dublin Core', 'Title'), array('no_escape' => true))): ?>
                         <?php $altText =  $description; ?>
                     <?php endif; ?> 
-                    <div class="sp-layer sp-static" data-height:"100%">
-                        <?php echo file_markup($file, array('imageSize'=>$size,'linkToFile'=>false, 'imgAttributes'=>array('alt' =>  "$altText", 'title' => metadata($item, array("Dublin Core", "Title"))))); ?>
-                    </div>
 
+                        <?php echo file_markup($file, array('imageSize'=>$size,'linkToFile'=>false, 'imgAttributes'=>array('class' => "sp-image", 'alt' =>  "$altText", 'title' => metadata($item, array("Dublin Core", "Title"))))); ?>
+
+                    <?php if($attachment['caption']): ?>
+                        <div class="sp-caption" >
+                            <span class="caption-title"><?php echo exhibit_builder_link_to_exhibit_item($description, array(), $item); ?></span>
+                            <?php echo $attachment['caption']; ?>
+                        </div>
+                    <?php endif; ?>
+                        
                     <?php echo file_markup($file, array('imageSize'=>'thumbnail','linkToFile'=>false, 'imgAttributes'=>array('alt' =>  "$altText", 'class' => 'sp-thumbnail', 'title' => metadata($item, array("Dublin Core", "Title"))))); ?>
                 
-                <?php if($attachment['caption']): ?>
-                    <div class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-width="100%" >
-                        <span class="caption-title"><?php echo exhibit_builder_link_to_exhibit_item($description, array(), $item); ?></span>
-                        <?php echo $attachment['caption']; ?>
-                    </div>
-                <?php endif; ?>
-            </div>
-            
+
+            </div>           
         <?php endforeach; ?>
+        
     </div>
         
 </div>
