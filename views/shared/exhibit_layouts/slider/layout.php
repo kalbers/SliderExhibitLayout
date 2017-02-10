@@ -19,20 +19,26 @@ $captionPosition = isset($options['captions-position'])
                     $item = $attachment->getItem();
                     $file = $attachment->getFile();
                     ?>
-                    <?php if ($description = metadata($item, array('Dublin Core', 'Title'), array('no_escape' => true))): ?>
-                        <?php $altText =  $description; ?>
-                    <?php endif; ?> 
+                    
+      <!-- Added this check to remove error with metadata(NULL) -AM 7/22/16-->
+                    <?php if (isset($item)): ?>
+                    
+                      <?php if ($description = metadata($item, array('Dublin Core', 'Title'), array('no_escape' => true))): ?>
+                          <?php $altText =  $description; ?>
+                      <?php endif; ?> 
 
-                        <?php echo file_markup($file, array('imageSize'=>$size,'linkToFile'=>false, 'imgAttributes'=>array('class' => "sp-image", 'alt' =>  "$altText", 'title' => metadata($item, array("Dublin Core", "Title"))))); ?>
+                          <?php echo file_markup($file, array('imageSize'=>$size,'linkToFile'=>false, 'imgAttributes'=>array('class' => "sp-image", 'alt' =>  "$altText", 'title' => metadata($item, array("Dublin Core", "Title"))))); ?>
 
-                    <?php if($attachment['caption']): ?>
-                        <div class="sp-caption" >
-                            <span class="caption-title"><?php echo exhibit_builder_link_to_exhibit_item($description, array(), $item); ?></span>
-                            <?php echo $attachment['caption']; ?>
-                        </div>
-                    <?php endif; ?>
+                      <?php if($attachment['caption']): ?>
+                          <div class="sp-caption" >
+                              <span class="caption-title"><?php echo exhibit_builder_link_to_exhibit_item($description, array(), $item); ?></span>
+                              <?php echo $attachment['caption']; ?>
+                          </div>
+                      <?php endif; ?>
+                    
+                  <?php endif; ?>
                         
-                    <?php// echo file_markup($file, array('imageSize'=>'thumbnail','linkToFile'=>false, 'imgAttributes'=>array('alt' =>  "$altText", 'class' => 'sp-thumbnail', 'title' => metadata($item, array("Dublin Core", "Title"))))); ?>
+                    <!-- <?php// echo file_markup($file, array('imageSize'=>'thumbnail','linkToFile'=>false, 'imgAttributes'=>array('alt' =>  "$altText", 'class' => 'sp-thumbnail', 'title' => metadata($item, array("Dublin Core", "Title"))))); ?> -->
                 
 
             </div>           
